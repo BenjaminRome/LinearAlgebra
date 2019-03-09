@@ -33,5 +33,17 @@ class Matrix:
         self.matrix[row_one - 1] = (self.matrix[row_two - 1])
         self.matrix[row_two - 1] = temp_row
 
-    # def row_replace(self, source_row, target_row, scalar):
+    def row_replace(self, source_row, target_row, source_scale=1, target_scale=1):
+        new_row = []
+        scaled_target = []
+        scaled_source = []
 
+        for num in self.matrix[target_row - 1]:
+            scaled_target.append(num * target_scale)
+        for num in self.matrix[source_row - 1]:
+            scaled_source.append(num * source_scale)
+
+        for i in range(len(scaled_target)):
+            new_row.append(scaled_target[i] + scaled_source[i])
+
+        self.matrix[target_row - 1] = new_row
